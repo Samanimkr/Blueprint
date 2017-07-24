@@ -13,7 +13,7 @@ client.on('connect', function(){
   console.log("Connected to redis!");
 });
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(__dirname));
 app.use(favicon(path.join(__dirname,'public','favi.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

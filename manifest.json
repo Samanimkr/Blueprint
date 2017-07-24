@@ -1,0 +1,22 @@
+{
+  "name": "Developer Tracker",
+  "short_name": "DevTracker",
+  "icons": [{
+    "src": "public/logo.png",
+    "type": "image/png",
+    "sizes": "128x128"
+  },{
+    "src": "public/logo.png",
+    "type": "image/png",
+    "sizes": "144x144"
+  },{
+    "src": "public/logo.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#003735",
+  "theme_color": "#104745"
+}
