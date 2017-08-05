@@ -157,7 +157,7 @@ ul li.project {
   text-decoration: none;
 }
 
-ul li.project span {
+ul li.project span { 
   width: 100%;
   float: left;
   font-size: 22px;
