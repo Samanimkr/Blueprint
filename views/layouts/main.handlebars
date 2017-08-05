@@ -21,13 +21,16 @@
       <div class="brand">
         <h3>DevTracker</h3>
       </div>
-      <img src="" />
+      <p>Logged in as {{user.first_name}} {{user.last_name}}</p>
       <ul id="nav-links">
-        <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
-        <li><a href=""><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-        <li><a href=""><i class="fa fa-sliders" aria-hidden="true"></i> Preferences</a></li>
-        <li><a href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
-        <li><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+        {{#if LoggedIn}}
+          <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+          <li><a href=""><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+          <li><a href=""><i class="fa fa-sliders" aria-hidden="true"></i> Preferences</a></li>
+          <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+        {{else}}
+          <li><a href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+        {{/if}}
       </ul>
       <ul id="nav-footer">
           <li><a href="">Contact</a></li>
@@ -39,7 +42,7 @@
 
     {{{body}}}
 
-    <!--               Javascript files              -->
+    <!--Javascript files-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="public/js/main.js"></script>
   </body>
