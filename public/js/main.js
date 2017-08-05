@@ -9,11 +9,30 @@
 //
 // });
 
+var navWidth = "70%";
+var animSpeed = 250; //milliseconds
+
 $(document).ready(function(){
 
   $('#menu').click(function() {
-    $('nav').animate({ left: "0"} , 250);
-    $('#nav-right').fadeIn(500);
+    $('nav').animate({ left: "0"} , animSpeed);
+    $('#nav-right').fadeIn(animSpeed);
 });
+
+$('#nav-right').click(function() {
+  $('nav').animate({ left: ("-"+navWidth) } , animSpeed);
+  $('#nav-right').fadeOut(animSpeed);
+});
+
+$('#loginbtn').click(function(){
+	$('#login-form').show();
+	$('#signup-form').hide();
+});
+
+$('#signupbtn').click(function(){
+	$('#login-form').hide();
+	$('#signup-form').show();
+});
+
 
 });
