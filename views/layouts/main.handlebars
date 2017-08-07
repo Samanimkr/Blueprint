@@ -21,7 +21,9 @@
       <div class="brand">
         <h3>DevTracker</h3>
       </div>
+      {{#if LoggedIn}}
       <p>Logged in as {{user.first_name}} {{user.last_name}}</p>
+      {{/if}}
       <ul id="nav-links">
         {{#if LoggedIn}}
           <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
@@ -38,7 +40,7 @@
           <li><a href="">Social Media</a></li>
       </ul>
     </nav>
-    <div id="nav-right"></div>
+    <div class="background-screen" id="nav-right"></div>
 
     {{{body}}}
 

@@ -1,0 +1,40 @@
+
+    <header>
+      <!-- <input type="text" placeholder="Search for a project..." id="project"> -->
+      <button id="menu"><i class="fa fa-bars" aria-hidden="true"></i></button>
+      <span>Projects</span>
+      <button id="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+      <button id="newproject"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    </header>
+
+    <div class="dropdown">
+      <form action="/addproject" method="POST">
+        <span>New Project</span>
+        <input type="text" name="projectName" placeholder="Project name...">
+        <select name="projectColour">
+          <option value="white">Choose colour:</option>
+          <option value="white">White</option>
+          <option value="orange">Orange</option>
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+        </select>
+        <input type="submit" value="Create">
+      </form>
+    </div>
+    <div class="background-screen" id="dropdown-bottom"></div>
+
+    <div class="container">
+      <ul>
+        {{#if projects}}
+          {{#each projects}}
+            <li class="project {{this.colour}}">
+              <a class="project-link" href=""><span>{{this.name}}</span></a>
+              <a class="settings" href=""><i class="fa fa-cog" aria-hidden="true"></i></a>
+            </li>
+          {{/each}}
+        {{else}}
+          <p>You currently have no projects. Click the "+" button to create one!</p>
+        {{/if}}
+      </ul>
+    </div>

@@ -34,5 +34,16 @@ $('#signupbtn').click(function(){
 	$('#signup-form').show();
 });
 
+$('#newproject').click(function(){
+	$('.dropdown').slideToggle(animSpeed);
+  $('#dropdown-bottom').fadeToggle(animSpeed);
+});
+
+$('.dropdown input[type="submit"], #dropdown-bottom').click(function(){
+  $('.dropdown').slideToggle(animSpeed);
+  $('#dropdown-bottom').fadeToggle(animSpeed);
+});
+
+
 
 });

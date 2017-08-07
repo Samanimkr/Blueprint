@@ -10,6 +10,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const sha256 = require('sha256');
 
+
 var DB_URL = "mongodb://localhost/devtracker";
 var app = express();
 mongoose.Promise = global.Promise; //this is very slow so change to bluebird for example
@@ -37,7 +38,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    expires: 600000,//10mins
+    expires: 6000000,//10mins if u remove one zero
     // secure: true //ENABLE when HTTPS is setup!!
   }
 }));
@@ -69,9 +70,12 @@ app.get('/logout', function(req, res){
 
 app.get('/', sessionChecker, function(req, res){
   getCurrentUser(req.session, function(result){
-    res.render('home', {
-      title: "DevTracker - Home",
-      user: result
+    Project.find({owner: req.session.user}).sort({last_updated: -1}).exec(function(err, userProjects){
+      res.render('dashboard', {
+        title: "DevTracker - Home",
+        user: result,
+        projects: userProjects
+      });
     });
   })
 });
@@ -151,9 +155,24 @@ app.post('/signup', (req, res) => {
   });
 });
 
+app.post('/addproject', function(req, res){
+  var project = new Project({
+    owner: req.session.user,
+    name: req.body.projectName,
+    colour: req.body.projectColour
+  });
+  project.save()
+  .then((savedProject) => {
+    Project.find({owner: req.session.user}).sort({last_updated: -1}).exec(function(err, userProjects){
+      res.redirect('/');
+    });
+  }).catch((error) => {
+    console.log(error);
+  });
+});
+
 function getCurrentUser(session, callback){
   User.findOne({'_id': session.user}, function(err, user){
-    console.log("c1-----" + user);
     callback(user);
   });
 }
@@ -171,3 +190,55 @@ var userSchema = new Schema({
 }, {collection: 'users'});
 
 var User = mongoose.model('User', userSchema);
+
+var featureSchema = new Schema({
+  title: String,
+  description: String,
+  colour: String,
+  tag: String,
+  status: String,
+  isPinned: {type: Boolean, default: false}
+});
+
+var issueSchema = new Schema({
+  title: String,
+  description: String,
+  status: String,
+});
+
+var projectSchema = new Schema({
+  owner: {type: String, required: true},
+  name: {type: String, required: true},
+  colour: {type: String, default: "white"},
+  last_updated: {type: Date, default: Date.now},
+  date_created: {type: Date, default: Date.now},
+  features: [featureSchema],
+  issues: [issueSchema]
+}, {collection: 'projects'});
+
+var Project = mongoose.model('Project', projectSchema);
+/*
+var project = new Project({
+  owner: "Owner id",
+  name: "PName",
+  features: [{
+    title: "FTitle",
+    description: "FDescription",
+    colour: "FColour",
+    tag: "Ftag",
+    status: "FStatus",
+    isPinned: false
+  }],
+  issues: [{
+    title: "ETitle",
+    description: "EDscription",
+    status: "EStatus"
+  }]
+});
+project.save()
+.then((savedProject) => {
+  console.log(savedProject);
+}).catch((error) => { //c-heck this code again because it doesnt tell the user when the email has been duplicated
+  console.log(error); //email duplication error code is 11000 (error.code)
+});
+*/
