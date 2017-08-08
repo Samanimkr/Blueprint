@@ -78,7 +78,7 @@ nav .brand {
 nav p{
   color: #fff;
   padding: 10px 5px;
-  background-color: #e0f0f0;
+  background-color: #e0f5f0;
   font-size: 16px;
 }
 
@@ -184,7 +184,14 @@ header button {
   float: left;
 }
 
-header button#search, header button#newproject {
+header button a {
+  color: #48D0AC;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+header button#search, header button#newproject, header button#newfeature {
   float: right;
 }
 

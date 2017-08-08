@@ -155,6 +155,19 @@ app.post('/signup', (req, res) => {
   });
 });
 
+app.get('/project/:projectName', function(req, res){
+  Project.findOne({owner: req.session.user, name: req.params.projectName}, function(err, project){
+    if (project == null) {
+      res.status(404).send("project doesn't exist!");
+    } else{
+      res.render('features', {
+        project: project,
+        publicUrl: '/project'
+      });
+    }
+  });
+});
+
 app.post('/addproject', function(req, res){
   var project = new Project({
     owner: req.session.user,

@@ -1,10 +1,10 @@
 
     <header>
       <!-- <input type="text" placeholder="Search for a project..." id="project"> -->
-      <button id="menu"><i class="fa fa-bars" aria-hidden="true"></i></button>
+      <button id="menu"><a><i class="fa fa-bars" aria-hidden="true"></i></a></button>
       <span>Projects</span>
-      <button id="search"><i class="fa fa-search" aria-hidden="true"></i></button>
-      <button id="newproject"><i class="fa fa-plus" aria-hidden="true"></i></button>
+      <button id="search"><a><i class="fa fa-search" aria-hidden="true"></i></a></button>
+      <button id="newproject"><a><i class="fa fa-plus" aria-hidden="true"></i></a></button>
     </header>
 
     <div class="dropdown">
@@ -29,7 +29,7 @@
         {{#if projects}}
           {{#each projects}}
             <li class="project {{this.colour}}">
-              <a class="project-link" href=""><span>{{this.name}}</span></a>
+              <a class="project-link" href="/project/{{this.name}}"><span>{{this.name}}</span></a>
               <a class="settings" href=""><i class="fa fa-cog" aria-hidden="true"></i></a>
             </li>
           {{/each}}
