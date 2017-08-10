@@ -1,23 +1,24 @@
-var cacheName = 'v1.6';
+var cacheName = 'v1.7';
 
 var cacheFiles = [
-  './',
-  './public/css/reset.css',
-  './public/css/style.css',
+  // './',
+  // './public/css/reset.css',
+  // './public/css/main.css',
   './public/js/main.js',
+  './public/js/offline.html',
   // './public/font-awesome/css/font-awesome.min.css',
   // './public/font-awesome/fonts/fontawesome-webfont.eot',
   // './public/font-awesome/fonts/fontawesome-webfont.svg',
   // './public/font-awesome/fonts/fontawesome-webfont.ttf',
   // './public/font-awesome/fonts/fontawesome-webfont.woff',
-  // './public/font-awesome/fonts/fontawesome-webfont.woff2',
   // './public/font-awesome/fonts/FontAwesome.otf',
-  './public/favi.ico',
-  './public/logo.png',
-  './views/layouts/main.handlebars',
-  './views/home.handlebars',
+  // './public/favi.ico',
+  // './public/logo.png',
+  // './views/layouts/main.handlebars',
+  // './views/dashboard.handlebars',
   // 'https://fonts.googleapis.com/css?family=Rubik',
   // 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'
+  // 'https://fonts.gstatic.com/s/rubik/v4/_mlO9_1N7oXYhEnEzC2l-g.woff2',
 ];
 
 
@@ -70,8 +71,6 @@ self.addEventListener('fetch', function(e) {
 
 		// Check in cache for the request being made
 		caches.match(e.request)
-
-
 			.then(function(response) {
 
 				// If the request is in the cache
@@ -80,38 +79,6 @@ self.addEventListener('fetch', function(e) {
 					// Return the cached version
 					return response;
 				}
-
-				// If the request is NOT in the cache, fetch and cache
-
-				var requestClone = e.request.clone();
-				fetch(requestClone)
-					.then(function(response) {
-
-						if ( !response ) {
-							console.log("[ServiceWorker] No response from fetch ")
-							return response;
-						}
-
-						var responseClone = response.clone();
-
-						//  Open the cache
-						caches.open(cacheName).then(function(cache) {
-
-							// Put the fetched response in the cache
-							cache.put(e.request, responseClone);
-							console.log('[ServiceWorker] New Data Cached', e.request.url);
-
-							// Return the response
-							return response;
-
-				        }); // end caches.open
-
-					})
-					.catch(function(err) {
-						console.log('[ServiceWorker] Error Fetching & Caching New Data', err);
-					});
-
-
-			}) // end caches.match(e.request)
-	); // end e.respondWith
-});
+      })
+    );
+  });

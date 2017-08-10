@@ -1,6 +1,22 @@
-<header>
-  <!-- <input type="text" placeholder="Search for a project..." id="project"> -->
-  <button id="back"><a href="/"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></button>
-  <span>{{project.name}}</span>
-  <button id="newfeature"><a><i class="fa fa-plus" aria-hidden="true"></i></a></button>
+<header class="{{project.colour}}-header">
+  <a href="/" class="{{project.colour}}-text"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+  <span class="{{project.colour}}-text">{{project.name}}</span>
+  <a href="/project/{{project.id}}/addfeature" class="right {{project.colour}}-text"><i class="fa fa-plus" aria-hidden="true"></i></a>
 </header>
+
+<div class="container">
+  <ul>
+    {{#if project.features}}
+      {{#each project.features}}
+        <li><span>Title: {{this.title}}</span></li>
+        <li><span>Description: {{this.description}}</span></li>
+        <li><span>Tag: {{this.tag}}</span></li>
+        <li><span>Status: {{this.status}}</span></li>
+        <li><span>isPinned: {{this.isPinned}}</span></li>
+      {{/each}}
+      <br><br>
+    {{else}}
+      <p>Press the "+" button to add features to this project</p>
+    {{/if}}
+  </ul>
+</div>

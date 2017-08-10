@@ -1,0 +1,20 @@
+<header class="{{project.colour}}-background">
+  <a href="/project/{{project.id}}" class="white-text"><i class="fa fa-times" aria-hidden="true"></i></a>
+  <span class="white-text">Add feature!</span>
+  <button class="right" type="submit" form="featureform"><a class="white-text"><i class="fa fa-check" aria-hidden="true"></i></a></button>
+</header>
+
+<div class="feature-container {{project.colour}}-background">
+  <form id="featureform" method="POST" action="/project/{{project.id}}/addfeature">
+    <input type="text" name="title" placeholder="Feature title">
+    <textarea name="description" placeholder="Feature description"></textarea>
+    <input type="text" name="tag" placeholder="Group/tag">
+    <label for="status">Status:</label>
+    <select name="status">
+      <option value="Not Started">Not Started</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Done">Done</option>
+    </select>
+  </form>
+  <br><br><br><br><br><br><br><br><br><br><br>
+</div>

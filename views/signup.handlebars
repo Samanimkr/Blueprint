@@ -1,0 +1,44 @@
+<header>
+  <button id="menu"><a><i class="fa fa-bars" aria-hidden="true"></i></a></button>
+  <span>Login/Signup</span>
+</header>
+
+<div class="login-content">
+
+  <a id="loginbtn" href="/login">LOGIN</a>
+  <a id="signupbtn">SIGN UP</a>
+
+  {{#if errors}}
+    <div class="error-messages">
+      <ul>
+        {{#each errors}}
+          <li>{{this.msg}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
+  <div id="signup-form">
+    <form action="/signup" method="POST">
+      <ul>
+        <li>
+          <div class="input-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+          <input class="half" type="text" name="first_name" placeholder="First name..." required>
+          <input class="half" type="text" name="last_name" placeholder="Last name..." required>
+        </li>
+        <li>
+          <div class="input-icon"><i class="fa fa-envelope-square" aria-hidden="true"></i></div>
+          <input type="text" name="email" placeholder="Email..." required>
+        </li>
+        <li>
+          <div class="input-icon"><i class="fa fa-lock" aria-hidden="true"></i></div>
+          <input class="half" type="password" name="password" placeholder="Password..." required>
+          <input class="half" type="password" name="passwordMatch" placeholder="Re-enter password...">
+        </li>
+        <li>
+          <input type="submit" value="Sign up">
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>

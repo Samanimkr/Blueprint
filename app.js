@@ -74,7 +74,8 @@ app.get('/', sessionChecker, function(req, res){
       res.render('dashboard', {
         title: "DevTracker - Home",
         user: result,
-        projects: userProjects
+        projects: userProjects,
+        stylesheet: "dashboard"
       });
     });
   })
@@ -83,8 +84,19 @@ app.get('/', sessionChecker, function(req, res){
 app.get('/login', function(req, res){
   if(!req.session.user){ //if user isnt logged in
     res.render('login', {
-      title: "DevTracker - Login"
-      //state: login or signup
+      title: "DevTracker - Login",
+      stylesheet: "login"
+    });
+  } else {
+    res.redirect('/');
+  }
+});
+
+app.get('/signup', function(req, res){
+  if(!req.session.user){ //if user isnt logged in
+    res.render('signup', {
+      title: "DevTracker - Signup",
+      stylesheet: "login"
     });
   } else {
     res.redirect('/');
@@ -92,34 +104,33 @@ app.get('/login', function(req, res){
 });
 
 app.post('/login', (req, res) => {
-  var email = req.body.email.toLowerCase();
-  var password = sha256(req.body.password);
-
   //could insert the validation checks here so i dont have to query the db
   //group all checks for email into one line : "Incorrect email address." and same for password
+  var email = req.body.email.toLowerCase();
+  var password = sha256(req.body.password);
 
   User.findOne({'email': email}, function(err, user){
     if(user == null) {
       console.log("Incorrect email address.");
-      res.render('login');
+      res.redirect('/login');
     } else if(password == user.password) { //login successful!
       var user_id = user._id;
       req.session.user = user_id;
       res.redirect('/');
     } else {
       console.log("Incorrect password.");
-      res.render('login');
+      res.redirect('/login');
     }
   });
 });
 
 app.post('/signup', (req, res) => {
-  req.checkBody('first_name', 'First name field cannot be empty.').notEmpty();
-  req.checkBody('last_name', 'Last name field cannot be empty.').notEmpty();
-  req.checkBody('email', 'The email you entered is invalid, please try again.').isEmail();
-  req.checkBody('email', 'Email address must be between 4-100 characters long, please try again.').len(4, 100);
-  req.checkBody('password', 'Password must be between 8-100 characters long.').len(8, 100);
-  req.checkBody('passwordMatch', 'Passwords do not match, please try again.').equals(req.body.password);
+  req.checkBody('first_name', '- First name field cannot be empty.').notEmpty();
+  req.checkBody('last_name', '- Last name field cannot be empty.').notEmpty();
+  req.checkBody('email', '- Email you entered is invalid.').isEmail();
+  req.checkBody('email', '- Email must be 4-100 characters long.').len(4, 100);
+  req.checkBody('password', '- Password must be 8-100 characters long.').len(8, 100);
+  req.checkBody('passwordMatch', '- Passwords do not match').equals(req.body.password);
 
 
 
@@ -146,23 +157,29 @@ app.post('/signup', (req, res) => {
             result.array().push("Email address has already been taken.");
             console.log("read: " + result.array());
           }
-          res.render('login', {errors: result.array()});
+          res.render('signup', {
+            errors: result.array(),
+            stylesheet: "login"
+          });
         });
 
     } else {
-        res.render('login', {errors: result.array()});
+        res.render('signup', {
+          errors: result.array(),
+          stylesheet: "login"
+        });
     }
   });
 });
 
-app.get('/project/:projectName', function(req, res){
-  Project.findOne({owner: req.session.user, name: req.params.projectName}, function(err, project){
+app.get('/project/:id', sessionChecker, function(req, res){
+  Project.findOne({owner: req.session.user, _id: req.params.id}, function(err, project){
     if (project == null) {
       res.status(404).send("project doesn't exist!");
     } else{
       res.render('features', {
         project: project,
-        publicUrl: '/project'
+        stylesheet: "features"
       });
     }
   });
@@ -176,11 +193,39 @@ app.post('/addproject', function(req, res){
   });
   project.save()
   .then((savedProject) => {
-    Project.find({owner: req.session.user}).sort({last_updated: -1}).exec(function(err, userProjects){
-      res.redirect('/');
-    });
+    res.redirect('/');
   }).catch((error) => {
     console.log(error);
+  });
+});
+
+app.get('/project/:id/addfeature', sessionChecker, function(req, res){
+  Project.findOne({owner: req.session.user, _id: req.params.id}, function(err, project){
+    if (project == null) {
+      res.status(404).send("project doesn't exist!");
+    } else{
+      res.render('feature-options', {
+        project: project,
+        stylesheet: "features"
+      });
+    }
+  });
+});
+
+app.post('/project/:id/addfeature', sessionChecker, function(req, res){
+  //PERFORM VALIDATION CHECKS ON ALL FIELDS! if all good then run code below
+
+  Project.findOneAndUpdate({owner: req.session.user, _id: req.params.id},
+    { last_updated: Date.now(),
+      $push: { features: {
+      title: req.body.title,
+      description: req.body.description,
+      tag: req.body.tag,
+      status: req.body.status
+    }
+  }}, function(err, updatedProject){
+    if (err) console.log(err);
+    res.redirect('/project/'+updatedProject.id);
   });
 });
 
