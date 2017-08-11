@@ -218,9 +218,9 @@ app.post('/project/:id/addfeature', sessionChecker, function(req, res){
   Project.findOneAndUpdate({owner: req.session.user, _id: req.params.id},
     { last_updated: Date.now(),
       $push: { features: {
-      title: req.body.title,
+      title: req.body.title, //set a max on this so its not too long in features page
       description: req.body.description,
-      tag: req.body.tag,
+      tag: req.body.tag, //set a max on this so its not too long in features page
       status: req.body.status
     }
   }}, function(err, updatedProject){

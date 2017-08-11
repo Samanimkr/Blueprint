@@ -10,6 +10,24 @@ Colours:
 
 */
 
+.badge{
+  min-width: 24px;
+  max-width: 30%;
+  height: 17px !important;
+  margin-top: 12px;
+  padding: 2.5px 4px !important;
+  background-color:#4CD4B0;
+  color:#fff;
+  vertical-align: top;
+  display:inline-block;
+  font-size: 12.5px !important;
+  text-align: center;
+  border-radius:5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .white-text {
   color: #F3F3F3;
 }
@@ -65,11 +83,56 @@ header button{
   padding: 20px 15px;
 }
 
-.container ul > p {
-  color: #d5d5d5;
-  font-size: 14px;
+.container ul li {
+  background-color: #fff;
+  height: 70px;
+  margin: 5px 0;
+}
+
+.container ul li a {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+}
+
+.container ul li a > span {
+  height: 50%;
+  display: inline-block;
+  font-size: 14.5px;
+  padding-top: 13px;
+}
+
+.container ul li a > span#feature-title {
+  max-width: 38%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.container ul li a > p {
+  height: 50%;
+  display: block;
+  padding-top: 5px;
+  font-size: 13.5px;
+  color: #c5c5c5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container ul li a .date {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-right: 5px;
+  padding-top: 6px;
+  font-size: 13.5px;
   text-align: center;
-  padding: 20px 15px;
+  float: left;
+  color: #fff;
+  border-radius: 15px;
 }
 
 .feature-container form {
