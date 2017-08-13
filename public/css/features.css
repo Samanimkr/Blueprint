@@ -13,9 +13,6 @@ Colours:
 .badge{
   min-width: 24px;
   max-width: 30%;
-  height: 17px !important;
-  margin-top: 12px;
-  padding: 2.5px 4px !important;
   background-color:#4CD4B0;
   color:#fff;
   vertical-align: top;
@@ -86,6 +83,7 @@ header button{
 .container ul li {
   background-color: #fff;
   height: 70px;
+  min-height: 70px;
   margin: 5px 0;
 }
 
@@ -109,6 +107,12 @@ header button{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.container ul li a > span.badge {
+  height: 17px;
+  padding: 2.5px 4px;
+  margin-top: 12px;
 }
 .container ul li a > p {
   height: 50%;

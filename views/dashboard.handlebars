@@ -10,10 +10,10 @@
     <div class="dropdown">
       <form action="/addproject" method="POST">
         <span>New Project</span>
-        <input type="text" name="projectName" placeholder="Project name...">
+        <input type="text" name="projectName" placeholder="Project name" autofocus required pattern="[a-zA-Z0-9 _-]{1,30}$" title="No special characters and must be 1-30 characters long">
         <select name="projectColour">
-          <option value="white">Choose colour:</option>
-          <option value="white">White</option>
+          <option value="white">Theme colour:</option>
+          <option value="white">White and Teal</option>
           <option value="orange">Orange</option>
           <option value="red">Red</option>
           <option value="green">Green</option>

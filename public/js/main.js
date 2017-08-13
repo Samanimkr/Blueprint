@@ -40,9 +40,36 @@ $(document).ready(function(){
     $('#dropdown-bottom').fadeToggle(animSpeed);
   });
 
-  $('.dropdown input[type="submit"], #dropdown-bottom').click(function(){
+  $('#dropdown-bottom').click(function(){
     $('.dropdown').slideToggle(animSpeed);
     $('#dropdown-bottom').fadeToggle(animSpeed);
+  });
+
+  $('#featuresContent ul li').click(function(){
+    $(this).css({
+    'height': 'auto'
+    });
+    $(this).find('span').css({
+      'display': 'block',
+      'height': 'auto',
+      'max-width': '100%',
+      'margin': '0',
+      'padding': '2px 0',
+      'white-space': 'normal',
+      'overflow': 'visible',
+      'text-overflow': 'inherit'
+    });
+    $(this).find('span.badge').css('max-width', '50%');
+    $(this).find('span.right').removeClass('right');
+    $(this).find('p').css({
+      'color': '#444',
+      'margin-top': '5px',
+      'white-space': 'normal',
+      'overflow': 'visible',
+      'text-overflow': 'inherit',
+      'height': 'auto',
+      'padding': '2px 0',
+    });
   });
 
 });
