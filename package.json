@@ -4,6 +4,7 @@
   "description": "Developer tool for tracking and planning projects",
   "main": "app.js",
   "scripts": {
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

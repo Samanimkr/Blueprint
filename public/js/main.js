@@ -45,6 +45,11 @@ $(document).ready(function(){
     $('#dropdown-bottom').fadeToggle(animSpeed);
   });
 
+  $('input[name="dueDate"]').datepicker({dateFormat: "yy-mm-dd", minDate: 0, constrainInput: true, prevText: "<", nextText: ">"});
+  // $('a#calendarbtn').click(function(){
+  //   $('input[name="dueDate"]').datepicker( "show" );
+  // });
+
   $('#featuresContent ul li').click(function(){
     $(this).css({
     'height': 'auto'

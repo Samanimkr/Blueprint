@@ -230,7 +230,7 @@ app.get('/project/:id/addfeature', sessionChecker, function(req, res) {
     if (project == null) {
       res.status(404).send("project doesn't exist!");
     } else {
-      res.render('feature-options', {
+      res.render('feature-add', {
         project: project,
         stylesheet: "features"
       });
@@ -249,9 +249,11 @@ app.post('/project/:id/addfeature', sessionChecker, function(req, res) {
       var featureData = {
         title: req.sanitize('title').escape().trim(),
         description: req.sanitize('description').escape().trim(),
-        tag: req.sanitize('tag').escape().trim(), //set a max on this so its not too long in features page
-        status: req.body.status
+        tag: req.sanitize('tag').escape().trim(),
+        status: req.body.status,
+        dueDate: req.body.dueDate
       }
+
       Project.findOneAndUpdate({
         owner: req.session.user,
         _id: req.params.id
@@ -315,6 +317,7 @@ var featureSchema = new Schema({
   description: String,
   colour: String,
   tag: String,
+  dueDate: Date,
   status: String,
   isPinned: {
     type: Boolean,

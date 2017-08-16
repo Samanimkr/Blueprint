@@ -4,17 +4,27 @@
   <button class="right" type="submit" form="featureform"><a class="white-text"><i class="fa fa-check" aria-hidden="true"></i></a></button>
 </header>
 
-<div class="feature-container {{project.colour}}-background">
+<div class="feature-add-container {{project.colour}}-background">
   <form id="featureform" method="POST" action="/project/{{project.id}}/addfeature">
     <input type="text" name="title" placeholder="Feature title" required pattern="[^;<>\\'&quot;]{1,20}$" title="Must be 1-20 characters long and not contain: &#060; &#062; &#146; &#148;">
     <textarea name="description" placeholder="Feature description"></textarea>
-    <input type="text" name="tag" placeholder="Group/tag" maxlength="12">
     <label for="status">Status:</label>
     <select name="status">
       <option value="Not Started">Not Started</option>
       <option value="In Progress">In Progress</option>
       <option value="Done">Done</option>
     </select>
+    <ul>
+      <li>
+        <label for="dueDate">Due date:</label>
+        <input type="text" name="dueDate" placeholder="Choose a date" readonly="true">
+        <!-- <a id="calendarbtn"><i class="fa fa-calendar" aria-hidden="true"></i></a> -->
+      </li>
+      <li>
+        <label for="tag">Tag/Group:</label>
+        <input type="text" name="tag" placeholder="e.g. Design, Backend..." maxlength="12">
+      </li>
+    </ul>
   </form>
   <br><br><br><br><br><br><br><br><br><br><br>
 </div>
