@@ -1,12 +1,12 @@
 <header class="{{project.colour}}-background">
-  <a href="/project/{{project.id}}" class="white-text"><i class="fa fa-times" aria-hidden="true"></i></a>
-  <span class="white-text">Add feature!</span>
-  <button class="right" type="submit" form="featureform"><a class="white-text"><i class="fa fa-check" aria-hidden="true"></i></a></button>
+  <a href="/project/{{project.id}}"><i class="fa fa-times" aria-hidden="true"></i></a>
+  <span>Add feature!</span>
+  <button class="right" type="submit" form="featureform"><a><i class="fa fa-check" aria-hidden="true"></i></a></button>
 </header>
 
 <div class="feature-add-container {{project.colour}}-background">
   <form id="featureform" method="POST" action="/project/{{project.id}}/addfeature">
-    <input type="text" name="title" placeholder="Feature title" required pattern="[^;<>\\'&quot;]{1,20}$" title="Must be 1-20 characters long and not contain: &#060; &#062; &#146; &#148;">
+    <input type="text" name="title" placeholder="Feature title" required pattern="[^;<>\\'&quot;]{1,25}$" title="Must be 1-20 characters long and not contain: &#060; &#062; &#146; &#148;">
     <textarea name="description" placeholder="Feature description"></textarea>
     <label for="status">Status:</label>
     <select name="status">
@@ -22,9 +22,8 @@
       </li>
       <li>
         <label for="tag">Tag/Group:</label>
-        <input type="text" name="tag" placeholder="e.g. Design, Backend..." maxlength="12">
+        <input type="text" name="tag" placeholder="e.g. Design, Backend..." maxlength="15">
       </li>
     </ul>
   </form>
-  <br><br><br><br><br><br><br><br><br><br><br>
 </div>

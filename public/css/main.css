@@ -12,13 +12,13 @@ Colours:
 
 
 .white-background {
-  background-color: #FFFFFF;
+  background-color: #FFF;
 }
 .red-background {
   background-color: rgb(220,130,110);
 }
 .orange-background {
-  background-color: rgb(255,181,135);
+  background-color: rgb(255,170,125);
 }
 .green-background {
   background-color: rgb(143,224,142);
@@ -206,4 +206,31 @@ header span {
 
 header a:hover {
   background-color: rgba(72,208,172, 0.1);
+}
+
+
+.feature-edit {
+  display: none;
+  width: 100%;
+  background-color: #fff;
+}
+
+.feature-edit ul {
+  display: flex;
+}
+
+.feature-edit ul li{
+  height: 50px;
+  flex: 1;
+  justify-content: center;
+}
+
+.feature-edit ul li a {
+  height: 100%;
+  display: flex;
+  font-size: 16px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-right: 1px solid #fbfbfb;
 }

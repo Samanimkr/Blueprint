@@ -24,15 +24,17 @@ Colours:
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.white-background {
+  background-color: #4CD4B0;
+}
 .white-text {
-  color: #F3F3F3;
+  color: #4CD4B0;
 }
 .red-text {
   color: rgba(220,130,110,0.8);
 }
 .orange-text {
-  color: rgba(255,181,135,0.8);
+  color: rgba(255,160,115,0.9);
 }
 .green-text {
   color: rgba(143,224,142,0.8);
@@ -45,6 +47,10 @@ header {
   box-shadow: none;
 }
 
+header a, header span {
+  color: #fff;
+}
+
 .white-header {
   box-shadow: 0px 3px 5px  #ddd;
 }
@@ -52,7 +58,7 @@ header {
   box-shadow: 0px 3px 5px rgba(220,130,110,0.8);
 }
 .orange-header {
-  box-shadow: 0px 3px 5px  rgba(255,181,135,0.8);
+  box-shadow: 0px 3px 5px  rgba(255,160,115,0.8);
 }
 .green-header {
   box-shadow: 0px 3px 5px rgba(143,224,142,0.8);
@@ -73,59 +79,68 @@ header button{
   margin-top: 65px;
 }
 
-.container ul > p {
+.container > ul > p {
   color: #d5d5d5;
   font-size: 14px;
   text-align: center;
   padding: 20px 15px;
 }
 
-.container ul li {
+.container > ul > li {
   background-color: #fff;
-  height: 70px;
   min-height: 70px;
   margin: 5px 0;
 }
 
-.container ul li a {
+.container > ul > li > a:hover {
+  background-color: #f9f9f9;
+}
+
+.container > ul > li > a {
   cursor: pointer;
   display: block;
   width: 100%;
+  min-height: 70px;
   height: 100%;
   padding: 5px 10px;
 }
 
-.container ul li a > span {
+.container > ul li a .top-row {
+  padding-top: 13px;
+  color: black;
+}
+.container > ul li a .bottom-row {
+  padding-top: 3px;
+}
+
+.container ul li a .bottom-row span:first-of-type{
+  color: #fff;
+  padding: 1px;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+.container > ul li > a span {
   height: 50%;
   display: inline-block;
   font-size: 14.5px;
-  padding-top: 13px;
 }
 
-.container ul li a > span#feature-title {
-  max-width: 38%;
+.container > ul li > a span#feature-title {
+  max-width: 60%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-.container ul li a > span.badge {
-  height: 17px;
-  padding: 2.5px 4px;
-  margin-top: 12px;
-}
-.container ul li a > p {
-  height: 50%;
-  display: block;
-  padding-top: 5px;
-  font-size: 13.5px;
-  color: #c5c5c5;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.container > ul li a > p {
+  display: none;
+  padding-top: 15px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #444;
 }
 
-.container ul li a .date {
+.container > ul li a .date {
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -141,7 +156,7 @@ header button{
 
 .feature-add-container form {
   text-align: left;
-  padding: 0 5%;
+  padding: 0 2%;
   color: #fff;
 }
 
@@ -160,8 +175,8 @@ header button{
 }
 
 .feature-add-container form > textarea{
-  height: 110px;
-  max-height: 200px;
+  height: 400px;
+  max-height: 400px;
   max-width: 100%;
 }
 

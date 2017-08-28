@@ -22,6 +22,7 @@
 
 var navWidth = "70%";
 var animSpeed = 250; //milliseconds
+var activatedFeature = "none";
 
 $(document).ready(function(){
 
@@ -45,36 +46,46 @@ $(document).ready(function(){
     $('#dropdown-bottom').fadeToggle(animSpeed);
   });
 
-  $('input[name="dueDate"]').datepicker({dateFormat: "yy-mm-dd", minDate: 0, constrainInput: true, prevText: "<", nextText: ">"});
-  // $('a#calendarbtn').click(function(){
-  //   $('input[name="dueDate"]').datepicker( "show" );
+  $('input[name="dueDate"]').datepicker({dateFormat: "dd/mm/yy", minDate: 0, constrainInput: true, prevText: "<", nextText: ">"});
+
+  // $('#dashboard-content ul li .settings').click(function(){
+  //
+  //   if (activatedProject == "none") {
+  //       activatedProject = this.id;
+  //       $(this).find('.feature-edit').slideDown(animSpeed);
+  //
+  //   } else if (activatedProject == this.id){
+  //       activatedProject = "none";
+  //       $(this).find('.feature-edit').slideUp(animSpeed);
+  //
+  //   } else {
+  //       $('#featuresContent ul li .feature-edit').slideUp(animSpeed);
+  //
+  //       activatedProject = this.id;
+  //       $(this).find('.feature-edit').slideDown(animSpeed);
+  //   }
   // });
 
   $('#featuresContent ul li').click(function(){
-    $(this).css({
-    'height': 'auto'
-    });
-    $(this).find('span').css({
-      'display': 'block',
-      'height': 'auto',
-      'max-width': '100%',
-      'margin': '0',
-      'padding': '2px 0',
-      'white-space': 'normal',
-      'overflow': 'visible',
-      'text-overflow': 'inherit'
-    });
-    $(this).find('span.badge').css('max-width', '50%');
-    $(this).find('span.right').removeClass('right');
-    $(this).find('p').css({
-      'color': '#444',
-      'margin-top': '5px',
-      'white-space': 'normal',
-      'overflow': 'visible',
-      'text-overflow': 'inherit',
-      'height': 'auto',
-      'padding': '2px 0',
-    });
+
+    if (activatedFeature == "none") {
+        activatedFeature = this.id;
+        $(this).find('p').slideDown(animSpeed);
+        $(this).find('.feature-edit').slideDown(animSpeed);
+
+    } else if (activatedFeature == this.id){
+        activatedFeature = "none";
+        $(this).find('p').slideUp(animSpeed);
+        $(this).find('.feature-edit').slideUp(animSpeed);
+
+    } else {
+        $('#featuresContent ul li p').slideUp(animSpeed);
+        $('#featuresContent ul li .feature-edit').slideUp(animSpeed);
+
+        activatedFeature = this.id;
+        $(this).find('p').slideDown(animSpeed);
+        $(this).find('.feature-edit').slideDown(animSpeed);
+    }
   });
 
 });

@@ -19,18 +19,27 @@
           <option value="green">Green</option>
           <option value="blue">Blue</option>
         </select>
+        >
         <input type="submit" value="Create">
       </form>
     </div>
     <div class="background-screen" id="dropdown-bottom"></div>
 
-    <div class="container">
+    <div class="container" id="dashboard-content">
       <ul>
         {{#if projects}}
           {{#each projects}}
             <li class="project {{this.colour}}-background">
               <a class="project-link" href="/project/{{this.id}}"><span>{{this.name}}</span></a>
               <a class="settings" href=""><i class="fa fa-cog" aria-hidden="true"></i></a>
+              <!-- <div class="feature-edit">
+                <ul>
+                  <li><a href="/project/edit/{{this._id}}" class="{{this.colour}}-text"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                  <li><a href="" class="{{this.colour}}-text"><i class="fa fa-thumb-tack" aria-hidden="true"></i></a></li>
+                  <li><a href="" class="{{this.colour}}-text"><i class="fa fa-check" aria-hidden="true"></i></a></li>
+                  <li><a href="/project/delete/{{this._id}}" class="{{this.colour}}-text"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+                </ul>
+              </div> -->
             </li>
           {{/each}}
         {{else}}

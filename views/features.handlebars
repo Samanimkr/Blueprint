@@ -9,16 +9,29 @@
   <ul>
     {{#if project.features}}
       {{#each project.features}}
-        <li>
+        <li id="feature-{{@key}}">
           <a>
             <!-- <div class="date {{@root.project.colour}}-background">
               <span>JAN 01</span>
             </div> -->
-            <span id="feature-title">{{this.title}}</span>
-            <span class="badge">{{this.tag}}</span>
-            <span class="right {{@root.project.colour}}-text">{{this.status}}</span>
+            <div class="top-row">
+              <span id="feature-title">{{this.title}}</span>
+              <span class="right">{{this.status}}</span>
+            </div>
+            <div class="bottom-row">
+              <span class="{{@root.project.colour}}-background">{{this.tag}}</span>
+              <span class="right {{@root.project.colour}}-text">{{this.dueDate}}</span>
+            </div>
             <p>{{this.description}}</p>
           </a>
+          <div class="feature-edit">
+            <ul>
+              <li><a href="/project/{{@root.project.id}}/edit/{{this._id}}" class="{{@root.project.colour}}-text"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+              <li><a href="" class="{{@root.project.colour}}-text"><i class="fa fa-thumb-tack" aria-hidden="true"></i></a></li>
+              <li><a href="" class="{{@root.project.colour}}-text"><i class="fa fa-check" aria-hidden="true"></i></a></li>
+              <li><a href="/project/{{@root.project.id}}/delete/{{this._id}}" class="{{@root.project.colour}}-text"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
         </li>
       {{/each}}
     {{else}}

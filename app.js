@@ -272,6 +272,22 @@ app.post('/project/:id/addfeature', sessionChecker, function(req, res) {
     });
 });
 
+app.get('/project/:id/delete/:featureid', function(req,res){
+  Project.findOneAndUpdate({
+    owner: req.session.user,
+    _id: req.params.id
+  } , {
+    "$pull": { "features": { "_id": req.params.featureid}}}
+  , function(err, updatedProject) {
+    if (err) console.log(err);
+    res.redirect('/project/' + updatedProject.id);
+  });
+});
+
+app.get('*', function(req, res){
+  res.send('what???', 404);
+});
+
 function getCurrentUser(session, callback) {
   User.findOne({
     '_id': session.user
@@ -317,7 +333,7 @@ var featureSchema = new Schema({
   description: String,
   colour: String,
   tag: String,
-  dueDate: Date,
+  dueDate: String,
   status: String,
   isPinned: {
     type: Boolean,

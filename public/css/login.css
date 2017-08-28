@@ -84,7 +84,7 @@ Colours:
   margin: 10px 0;
   font-size: 15px;
   -webkit-border-radius: 6px;
-  -moz-border-radius: 5px;
+  -moz-border-radius: 6px;
   border-radius: 6px;
   padding-left: 5px;
   border: none;
@@ -100,4 +100,4 @@ Colours:
   width: 85%;
   background-color: #3A99D9;
   color: #fff;
-}
+  -webkit-appearance: none;
